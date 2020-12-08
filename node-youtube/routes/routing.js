@@ -100,7 +100,6 @@ router.post('/csvfile', (req, res) => {
     // console.log(filename1);
     const nametype = req.body.name;
     const file = req.files.file;
-    console.log(nametype);
     file.mv(`./${nametype}`, err => {
         if (err) {
             return res.status(500).send(err);
@@ -113,37 +112,7 @@ router.post('/csvfile', (req, res) => {
     const converter = csv()
         .fromFile(`./${nametype}`)
         .then((dataCSV) => {
-            console.log(dataCSV);
             res.send(dataCSV);
-            // dataCSV.forEach(element => {
-                // console.log(element);
-                // console.log(element);
-                // console.log(element.playlistID);
-                // getPlayListItems(element.playlistID).then(data => {
-                //     var mydata = new User();
-                //     mydata.set("playlistID", element.playlistID);
-                //     mydata.set("numberVideo", data.pageInfo.totalResults);
-                //     var arr_index = [];
-                //     data.items.forEach(element => {
-                //         var videoUserdata = new videoUser();
-                //         videoUserdata.set("position", element.snippet.position);
-                //         videoUserdata.set("id", element.id);
-                //         videoUserdata.set("title", element.snippet.title);
-                //         videoUserdata.set("description", element.snippet.description);
-                //         videoUserdata.set("thumbnail", element.snippet.thumbnails.medium);
-                //         arr_index.push(videoUserdata);
-                //         videoUserdata.save();
-                //     });
-                //     mydata.set("videos", arr_index);
-                //     dd_dpy.push(mydata);
-                //     mydata.save().catch(err => res.status(401).send(err));
-                // });
-            // });
-            // sleep for 1 sec to complete all transaction
-            // setTimeout(() => {
-                // console.log(dd_dpy);
-                // res.send(dd_dpy)
-            // }, 1000);
         })
 })
 
